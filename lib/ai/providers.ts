@@ -12,7 +12,7 @@ import {
   titleModel,
 } from './models.test';
 
-export const myProvider = isTestEnvironment
+export const myProvider = true
   ? customProvider({
       languageModels: {
         'chat-model': chatModel,
