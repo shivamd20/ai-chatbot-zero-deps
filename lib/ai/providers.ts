@@ -11,8 +11,10 @@ import {
   reasoningModel,
   titleModel,
 } from './models.test';
+import {google} from "@ai-sdk/google";
 
-export const myProvider = true
+
+export const myProvider = isTestEnvironment
   ? customProvider({
       languageModels: {
         'chat-model': chatModel,
@@ -23,7 +25,8 @@ export const myProvider = true
     })
   : customProvider({
       languageModels: {
-        'chat-model': xai('grok-2-vision-1212'),
+        'chat-model': google('gemini-1.5-pro-latest'),
+        // 'chat-model': xai('grok-2-vision-1212'),
         'chat-model-reasoning': wrapLanguageModel({
           model: xai('grok-3-mini-beta'),
           middleware: extractReasoningMiddleware({ tagName: 'think' }),
